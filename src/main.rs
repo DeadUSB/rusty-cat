@@ -1,10 +1,10 @@
 use std::io;
 
 struct Cat {
-    health : u8,
-    hunger : u8,
-    energy : u8,
-    silliness : i8
+    health: u8,
+    hunger: u8,
+    energy: u8,
+    silliness: i8,
 }
 
 impl Cat {
@@ -96,7 +96,7 @@ fn main() {
         health: 100,
         hunger: 100,
         energy: 100,
-        silliness: 100
+        silliness: 100,
     };
 
     loop {
@@ -107,12 +107,14 @@ fn main() {
         println!("4. Play with the cat.\n");
         println!("5. Check the cat's status.");
         println!("6. Quit.");
-    
+
         let mut input = String::new();
-    
-        io::stdin().read_line(&mut input).expect("Failed to read input.");
-    
-        let input : u8 = match input.trim().parse() {
+
+        io::stdin()
+            .read_line(&mut input)
+            .expect("Failed to read input.");
+
+        let input: u8 = match input.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
         };
