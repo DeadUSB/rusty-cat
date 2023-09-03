@@ -1,29 +1,30 @@
 use std::io;
+use quit;
 
 struct Cat {
-    health: u8,
-    hunger: u8,
-    energy: u8,
+    health: i8,
+    hunger: i8,
+    energy: i8,
     silliness: i8,
 }
 
 impl Cat {
     fn status(&self) {
-        println!("Rusty the Virtual Cat!\n");
+        println!("=============================\n");
 
         println!(r"   |\      _,,,---,,_");
         println!(r"   /,`.-'`'    -.  ;-;;,_");
         println!(r"  |,4-  ) )-,_..;\ (  `'-'");
         println!(r" '---''(_/--'  `-'\_)");
         println!();
-        println!("Status:");
+        println!("==== Status ====");
         println!("Health: {}%", self.health);
         println!("Hunger: {}%", self.hunger);
         println!("Energy: {}%", self.energy);
         println!("Silliness: {}%", self.silliness);
     }
 
-    fn feed(&self) {
+    fn feed(&mut self) {
         println!("Feed the cat!\n"); // makes the cat tired
 
         println!(r"   __________________");
@@ -33,11 +34,24 @@ impl Cat {
         println!(r"\______________________/");
         println!();
 
+        if self.hunger >= 75 {
+            self.hunger = 100;
+        } else {
+            self.hunger += 25;
+        }
+
+        self.energy -= 25;
+
+        if self.energy <= 0 {
+            self.leave();
+            quit::with_code(0);
+        }
+
         println!("Rusty thought the food was delicious!");
-        println!("Rusty got a bit more tired.");
+        println!("Rusty got a bit more tired.\n");
     }
 
-    fn bathe(&self) {
+    fn bathe(&mut self) {
         println!("Bathe the cat!\n"); // makes the cat hungry
 
         println!(r"        /\_/\    0");
@@ -48,11 +62,24 @@ impl Cat {
         println!(r" o|o             o|o");
         println!();
 
+        if self.health >= 75 {
+            self.health = 100;
+        } else {
+            self.health += 25;
+        }
+
+        self.hunger -= 25;
+
+        if self.hunger <= 0 {
+            self.leave();
+            quit::with_code(0);
+        }
+
         println!("Rusty is feeling a lot cleaner!");
-        println!("Rusty got a bit more hungry.");
+        println!("Rusty got a bit more hungry.\n");
     }
 
-    fn nap(&self) {
+    fn nap(&mut self) {
         println!("Let the cat sleep!\n"); // makes the cat bored
 
         println!(r"             z");
@@ -63,11 +90,24 @@ impl Cat {
         println!(r" (_______________)");
         println!();
 
+        if self.energy >= 75 {
+            self.energy = 100;
+        } else {
+            self.energy += 25;
+        }
+
+        self.silliness -= 25;
+
+        if self.silliness <= 0 {
+            self.leave();
+            quit::with_code(0);
+        }
+
         println!("Rusty became well rested!");
-        println!("Rusty got a bit more bored.");
+        println!("Rusty got a bit more bored.\n");
     }
 
-    fn play(&self) {
+    fn play(&mut self) {
         println!("Play with the cat!\n"); // makes the cat dirty
 
         println!(r"                       \`*-.                    ");
@@ -86,18 +126,49 @@ impl Cat {
         println!(r"   '~._.~'  \_-_/     `*-*   `*-*  `*-*'");
         println!();
 
+        if self.silliness >= 75 {
+            self.silliness = 100;
+        } else {
+            self.silliness += 25;
+        }
+
+        self.health -= 25;
+
+        if self.health <= 0 {
+            self.leave();
+            quit::with_code(0);
+        }
+
         println!("Rusty had a lot of fun!");
-        println!("Rusty got a bit more dirty.");
+        println!("Rusty got a bit more dirty.\n");
+    }
+
+    fn leave(&self) {
+        println!("Uh oh! Rusty ran away!\n");
+
+        if self.health <= 0 {
+            println!("Rusty was too unhealthy.");
+        } else if self.hunger <= 0 {
+            println!("Rusty was too hungry.");
+        } else if self.energy <= 0 {
+            println!("Rusty wanted to sleep.");
+        } else {
+            println!("Rusty got too bored.")
+        }
     }
 }
 
+#[quit::main]
 fn main() {
-    let cat1 = Cat {
+    let mut cat1 = Cat {
         health: 100,
         hunger: 100,
         energy: 100,
         silliness: 100,
     };
+
+    println!("Rusty the Virtual Cat!\n");
+    cat1.status();
 
     loop {
         println!("What would you like to do?\n");

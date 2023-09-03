@@ -2,14 +2,25 @@
 
 A cat named rusty, written in rust.
 
-a wip for now but you can:
+You can:
 - feed it
 - let it sleep
 - play with it
 - bathe it
 
-its values do not change but that will be for the next update
+Its a very simple cat program I made for fun, which loops essentially forever.
 
+Cat Status
+
+Art by Felix Lee
+```
+   |\      _,,,---,,_
+  /,`.-'`'    -.  ;-;;,_
+ |,4-  ) )-,_. ,\ (  `'-'
+'---''(_/--'  `-'\_)
+```
+
+Cat Food
 ```
    __________________
   / .,.,. ,.,., .,., \
@@ -18,7 +29,7 @@ its values do not change but that will be for the next update
 \______________________/
 ```
 
-bath tub
+Cat Tub
 
 ```
 
@@ -30,7 +41,7 @@ bath tub
  o|o             o|o
 ```
 
- cat bed
+Cat Bed
  
 ```
              z
@@ -41,7 +52,7 @@ bath tub
  (_______________)
 ```
 
-cat play
+Cat Play
 
 Art by Blazej Kozlowski, Ball by DeadUSB
 
