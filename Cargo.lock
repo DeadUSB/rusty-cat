@@ -19,7 +19,7 @@ checksum = "1d4b27a0dd5d08ad7af2d17952fb360ec9c30eeade0b32df7a3c9b099ff37564"
 
 [[package]]
 name = "rusty-cat"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "quit",
 ]
